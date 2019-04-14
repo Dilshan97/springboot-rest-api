@@ -1,6 +1,7 @@
 package com.dilshan.springbootrestapiexample.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +17,15 @@ public class EmployeeDAO {
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
-	// SAVE AN EMPLOYEE
-	@Transactional(readOnly = false,isolation = Isolation.READ_COMMITTED)
+	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
 	public Employee save(Employee emp) {
-		return employeeRepository.save(emp);
+		return employeeRepository.save(emp);	
 	}
 	
-	// SEARCH ALL EMPLOYEES
 	public List<Employee> findAll(){
 		return employeeRepository.findAll();
 	}
 	
-	// GET AN EMPLOYEE
 	public Employee findOne(Long empId) {
 		Optional<Employee> op = employeeRepository.findById(empId);
 		
@@ -39,9 +37,9 @@ public class EmployeeDAO {
 		}
 	}
 	
-	//  DELETE AN EMPLOYEE by id
-	@Transactional(readOnly = false,isolation = Isolation.READ_COMMITTED)
+	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
 	public void delete(Employee emp) {
 		employeeRepository.delete(emp);
 	}
+	
 }
